@@ -9,7 +9,7 @@ English:
 С помощью этой программы можно автоматически коннектиться к публичному Wi-fi нижегородского филиала ВШЭ.
 
 Всё что требуется:
-1). Включить Wi-fi
+1). Включить Wi-fi и подключиться к сети HSE
 2). Запустить программу
 3). Пользоваться интернетом :)
 
@@ -18,8 +18,8 @@ English:
 TODO
 -ping
 -check webforms of other campuses
--jar
+[x]jar
 -Android build
 -distribute
 -free license
-
+-rename -> HSE login

@@ -7,14 +7,11 @@ import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
-public class AutoLogin {
+public class Login {
 
-	static boolean DEBUG = false;
+	final static boolean DEBUG = false;
 
-	public static void main(String[] args) throws MalformedURLException, IOException, InterruptedException {
-
-		String login = "hseguest";
-		String password = "hsepassword";
+	public static void login(String login, String password) throws MalformedURLException, IOException, InterruptedException {
 
 		// Create a new instance of the html unit driver
 		HtmlUnitDriver driver = new HtmlUnitDriver();
@@ -30,8 +27,7 @@ public class AutoLogin {
 
 		// Find the text input element by its name
 		WebElement element_login = driver.findElement(By.name("username"));
-		// Enter something
-		element_login.sendKeys(login);
+		element_login.sendKeys(login); // Enter something
 
 		WebElement element_password = driver.findElement(By.name("password"));
 		element_password.sendKeys(password);
