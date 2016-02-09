@@ -11,14 +11,14 @@ public class Login {
 
 	final static boolean DEBUG = false;
 
-	public static void login(String login, String password) throws MalformedURLException, IOException, InterruptedException {
+	public static void login(String login, String password, String campus_location) throws MalformedURLException, IOException, InterruptedException {
 
 		// Create a new instance of the html unit driver
 		HtmlUnitDriver driver = new HtmlUnitDriver();
 		driver.setJavascriptEnabled(true); // enable javascript
 
 		// And now use this to hse page
-		driver.get("https://nnov-wlc-03.hse.ru/login.html");
+		driver.get(campus_location);
 		// for logout: https://1.1.1.1/logout.html
 		if (DEBUG) {
 			System.out.println(driver.getCurrentUrl());

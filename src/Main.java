@@ -7,8 +7,9 @@ public class Main {
 
 		String login = "hseguest";
 		String password = "hsepassword";
+		String campus_location = "https://nnov-wlc-03.hse.ru/login.htm";
 		
-		Login.login(login, password);
-		
+		Login.login(login, password, campus_location);
+
 	}
 }

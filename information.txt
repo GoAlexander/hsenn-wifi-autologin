@@ -1,0 +1,17 @@
+Some useful information:
+
+Campuses have different addresses:
+
+Львовская:
+https://nnov-wlc-03.hse.ru/login.html
+
+Сормово:
+https://nnov-wlc-04.hse.ru/login.html
+
+Родинова:
+
+Печерская:
+
+
+Link for logout:
+https://1.1.1.1/logout.html
