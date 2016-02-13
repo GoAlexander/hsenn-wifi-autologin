@@ -4,7 +4,9 @@ import java.net.MalformedURLException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.UnhandledAlertException;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
 public class Login {
@@ -15,7 +17,7 @@ public class Login {
 
 		// Create a new instance of the html unit driver
 		HtmlUnitDriver driver = new HtmlUnitDriver();
-		driver.setJavascriptEnabled(true); // enable javascript
+		driver.setJavascriptEnabled(true); // enable javascript only for htmlunit!!!
 
 		// And now use this to hse page
 		driver.get(campus_location);
