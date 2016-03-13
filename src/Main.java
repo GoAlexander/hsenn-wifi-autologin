@@ -1,7 +1,7 @@
 import java.io.IOException;
 import java.net.MalformedURLException;
 
-public class Main {
+class Main {
 
 	public static void main(String[] args) throws MalformedURLException, IOException, InterruptedException {
 

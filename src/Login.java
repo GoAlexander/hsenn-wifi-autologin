@@ -4,14 +4,12 @@ import java.net.MalformedURLException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.UnhandledAlertException;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
-public class Login {
+class Login {
 
-	final static boolean DEBUG = false;
+	private final static boolean DEBUG = false;
 
 	public static void login(String login, String password, String campus_location) throws MalformedURLException, IOException, InterruptedException {
 
