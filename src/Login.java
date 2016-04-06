@@ -7,15 +7,17 @@ import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
-class Login {
+public class Login {
 
 	private final static boolean DEBUG = false;
 
-	public static void login(String login, String password, String campus_location) throws MalformedURLException, IOException, InterruptedException {
+	public static void login(String login, String password, String campus_location)
+			throws MalformedURLException, IOException, InterruptedException {
 
 		// Create a new instance of the html unit driver
 		HtmlUnitDriver driver = new HtmlUnitDriver();
-		driver.setJavascriptEnabled(true); // enable javascript only for htmlunit!!!
+		driver.setJavascriptEnabled(true); // enable javascript only for
+											// htmlunit!!!
 
 		// And now use this to hse page
 		driver.get(campus_location);
