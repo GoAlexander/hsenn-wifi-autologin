@@ -11,7 +11,14 @@ public class Login {
 
 	private final static boolean DEBUG = false;
 
-	public static void login(String login, String password, String campus_location)
+	public static void disconnect() throws MalformedURLException, IOException, InterruptedException {
+		HtmlUnitDriver driver = new HtmlUnitDriver();
+		driver.setJavascriptEnabled(true);
+		driver.get("https://1.1.1.1/logout.html");
+		driver.quit();
+	}
+
+	public static void connect(String login, String password, String campus_location)
 			throws MalformedURLException, IOException, InterruptedException {
 
 		// Create a new instance of the html unit driver
@@ -21,7 +28,6 @@ public class Login {
 
 		// And now use this to hse page
 		driver.get(campus_location);
-		// for logout: https://1.1.1.1/logout.html
 		if (DEBUG) {
 			System.out.println(driver.getCurrentUrl());
 			System.out.println("Page title is: " + driver.getTitle());

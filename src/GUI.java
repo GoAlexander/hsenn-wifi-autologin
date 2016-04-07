@@ -14,11 +14,13 @@ import javax.swing.JOptionPane;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.Dimension;
+import javax.swing.SwingConstants;
 
 class GUI {
 
 	JFrame frm;
-	String campus_location = "Львовская";
+	String campus_location = "Lvovskaya";
 	String campus_address;
 
 	/**
@@ -51,62 +53,81 @@ class GUI {
 		frm = new JFrame();
 		frm.setTitle("Wi-Fi connection");
 		frm.setResizable(false);
-		frm.setBounds(100, 100, 450, 105);
+		frm.setBounds(100, 100, 455, 106);
 		frm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frm.getContentPane().setLayout(new BorderLayout(0, 0));
 
 		JPanel panel = new JPanel();
 		frm.getContentPane().add(panel, BorderLayout.CENTER);
 
-		JButton btn = new JButton("Войти в сеть");
-		btn.addActionListener(new ActionListener() {
+		JButton btn1 = new JButton("Connect");
+		btn1.setMinimumSize(new Dimension(85, 23));
+		btn1.setPreferredSize(new Dimension(85, 23));
+		btn1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (campus_location.equals("Львовская"))
+				if (campus_location.equals("Lvovskaya"))
 					campus_address = "https://nnov-wlc-03.hse.ru/login.html";
-				else if (campus_location.equals("Сормово"))
+				else if (campus_location.equals("Sormovo"))
 					campus_address = "https://nnov-wlc-04.hse.ru/login.html";
-				else if (campus_location.equals("Печерская"))
+				else if (campus_location.equals("Pecherskaya"))
 					campus_address = "https://nnov-wlc-01.hse.ru/login.html";
-				else if (campus_location.equals("Родионова"))
+				else if (campus_location.equals("Rodionova"))
 					campus_address = "https://nnov-wlc-02.hse.ru/login.html";
 				try {
-					Login.login("hseguest", "hsepassword", campus_address);
+					Login.connect("hseguest", "hsepassword", campus_address);
+					JOptionPane.showMessageDialog(null, "Connection succesful!");
 				} catch (IOException | InterruptedException e1) {
-					JOptionPane.showMessageDialog(null, "Can`t connect!");
+					JOptionPane.showMessageDialog(null, "Connection error!");
 				}
 			}
 
 		});
-		String[] items = { "Львовская", "Сормово", "Печерская", "Родионова" };
+		String[] items = { "Lvovskaya", "Sormovo", "Pecherskaya", "Rodionova" };
 
-		JLabel label = new JLabel("Выберите кампус:");
-		JComboBox<String> comboBox = new JComboBox<String>(items);
+		JLabel label = new JLabel("Choose campus:");
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		JComboBox<String> comboBox = new JComboBox(items);
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				campus_location = (String) comboBox.getSelectedItem();
 			}
 
 		});
+
+		JButton btn2 = new JButton("Disconnect");
+		btn2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					Login.disconnect();
+				} catch (IOException | InterruptedException e1) {
+					JOptionPane.showMessageDialog(null, "Disconnection error!");
+				}
+			}
+		});
 		GroupLayout gl_panel = new GroupLayout(panel);
-		gl_panel.setHorizontalGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+		gl_panel.setHorizontalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
-						.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_panel.createSequentialGroup()
-										.addComponent(label, GroupLayout.PREFERRED_SIZE, 217,
-												GroupLayout.PREFERRED_SIZE)
-										.addPreferredGap(ComponentPlacement.RELATED).addComponent(comboBox,
-												GroupLayout.PREFERRED_SIZE, 217, GroupLayout.PREFERRED_SIZE))
-						.addComponent(btn, GroupLayout.DEFAULT_SIZE, 434, Short.MAX_VALUE))
-				.addContainerGap()));
-		gl_panel.setVerticalGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(label, GroupLayout.PREFERRED_SIZE, 217, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btn1, GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(comboBox, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(btn2, GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)))
+		);
+		gl_panel.setVerticalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
-						.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
-								.addComponent(label, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
-										Short.MAX_VALUE)
-						.addComponent(comboBox, GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))
-				.addPreferredGap(ComponentPlacement.RELATED)
-				.addComponent(btn, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
-				.addContainerGap(32, Short.MAX_VALUE)));
+					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(label)
+						.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btn1, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btn2, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+		);
 		panel.setLayout(gl_panel);
 	}
 }
