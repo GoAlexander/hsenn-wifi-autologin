@@ -17,6 +17,8 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Dimension;
 import javax.swing.SwingConstants;
 
+import org.openqa.selenium.NoSuchElementException;
+
 class GUI {
 
 	JFrame frm;
@@ -76,7 +78,7 @@ class GUI {
 				try {
 					Login.connect("hseguest", "hsepassword", campus_address);
 					JOptionPane.showMessageDialog(null, "Connection succesful!");
-				} catch (IOException | InterruptedException e1) {
+				} catch (IOException | InterruptedException | NoSuchElementException e1) {
 					JOptionPane.showMessageDialog(null, "Connection error!");
 				}
 			}

@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
@@ -11,7 +12,7 @@ public class Login {
 
 	private final static boolean DEBUG = false;
 
-	public static void disconnect() throws MalformedURLException, IOException, InterruptedException {
+	public static void disconnect() throws MalformedURLException, IOException, InterruptedException, NoSuchElementException {
 		HtmlUnitDriver driver = new HtmlUnitDriver();
 		driver.setJavascriptEnabled(true);
 		driver.get("https://1.1.1.1/logout.html");
