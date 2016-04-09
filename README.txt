@@ -17,9 +17,10 @@ English:
 
 TODO
 -ping
--check webforms of other campuses
+[x]check webforms of other campuses
 [x]jar
 -Android build
 -distribute
--free license
+-free license
 -rename -> HSE login
+-some cleaning + fix long disconnect(?)
