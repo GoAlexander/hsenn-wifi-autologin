@@ -101,6 +101,7 @@ class GUI {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					Login.disconnect();
+					JOptionPane.showMessageDialog(null, "Disconnected!");
 				} catch (IOException | InterruptedException e1) {
 					JOptionPane.showMessageDialog(null, "Disconnection error!");
 				}

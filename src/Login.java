@@ -15,7 +15,18 @@ public class Login {
 	public static void disconnect() throws MalformedURLException, IOException, InterruptedException, NoSuchElementException {
 		HtmlUnitDriver driver = new HtmlUnitDriver();
 		driver.setJavascriptEnabled(true);
-		driver.get("https://1.1.1.1/logout.html");
+		driver.get("http://1.1.1.1/logout.html");
+		
+		
+		try {
+			JavascriptExecutor executor = (JavascriptExecutor) driver;
+			executor.executeScript("document.forms[0].submit();");
+			System.out.println("test");//TDI delete
+		} catch (UnhandledAlertException f) {
+			System.out.println("(Something wrong.)");
+			// exception because of driver.getTitle()
+		}
+
 		driver.quit();
 	}
 
