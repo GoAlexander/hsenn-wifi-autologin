@@ -81,6 +81,18 @@ class GUI {
 				} catch (IOException | InterruptedException | NoSuchElementException e1) {
 					JOptionPane.showMessageDialog(null, "Connection error!");
 				}
+				for (;;) {
+					try {
+						Thread.sleep(29 * 60 * 1000);
+						try {
+							Login.connect("hseguest", "hsepassword", campus_address);
+						} catch (IOException e1) {
+							JOptionPane.showMessageDialog(null, "Connection error!");
+						}
+					} catch (InterruptedException ex) {
+						Thread.currentThread().interrupt();
+					}
+				}
 			}
 
 		});
@@ -109,28 +121,25 @@ class GUI {
 		});
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addComponent(label, GroupLayout.PREFERRED_SIZE, 217, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btn1, GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
+				gl_panel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel.createSequentialGroup()
+								.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+										.addComponent(label, GroupLayout.PREFERRED_SIZE, 217,
+												GroupLayout.PREFERRED_SIZE)
+								.addComponent(btn1, GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE))
+				.addPreferredGap(ComponentPlacement.RELATED)
+				.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
 						.addComponent(comboBox, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(btn2, GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)))
-		);
-		gl_panel.setVerticalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(btn2, GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE))));
+		gl_panel.setVerticalGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(label)
-						.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+						.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE).addComponent(label)
+								.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
+				.addPreferredGap(ComponentPlacement.UNRELATED)
+				.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btn1, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btn2, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-		);
+				.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 		panel.setLayout(gl_panel);
 	}
 }
