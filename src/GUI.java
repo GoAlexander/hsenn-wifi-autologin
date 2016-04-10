@@ -81,6 +81,7 @@ class GUI {
 				} catch (IOException | InterruptedException | NoSuchElementException e1) {
 					JOptionPane.showMessageDialog(null, "Connection error!");
 				}
+				/*
 				for (;;) {
 					try {
 						Thread.sleep(29 * 60 * 1000); //reconnect in 29 minutes
@@ -93,6 +94,7 @@ class GUI {
 						Thread.currentThread().interrupt();
 					}
 				}
+				*/
 			}
 
 		});
