@@ -83,7 +83,7 @@ class GUI {
 				}
 				for (;;) {
 					try {
-						Thread.sleep(29 * 60 * 1000);
+						Thread.sleep(29 * 60 * 1000); //reconnect in 29 minutes
 						try {
 							Login.connect("hseguest", "hsepassword", campus_address);
 						} catch (IOException e1) {
