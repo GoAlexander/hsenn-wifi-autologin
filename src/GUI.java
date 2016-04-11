@@ -24,6 +24,8 @@ class GUI {
 	JFrame frm;
 	String campus_location = "Lvovskaya";
 	String campus_address;
+	Thread subject1;
+	Thread subject2;
 
 	/**
 	 * Launch the application.
@@ -81,20 +83,26 @@ class GUI {
 				} catch (IOException | InterruptedException | NoSuchElementException e1) {
 					JOptionPane.showMessageDialog(null, "Connection error!");
 				}
-				/*
-				for (;;) {
-					try {
-						Thread.sleep(29 * 60 * 1000); //reconnect in 29 minutes
-						try {
-							Login.connect("hseguest", "hsepassword", campus_address);
-						} catch (IOException e1) {
-							JOptionPane.showMessageDialog(null, "Connection error!");
+				
+				subject1 = new Thread(new Runnable() {
+					public void run () {
+						for (;;) {
+							try {
+								Thread.sleep(29 * 60 * 1000); //reconnect in 29 minutes
+								try {
+									Login.connect("hseguest", "hsepassword", campus_address);
+									System.out.println("IT WORKS!!!"); // TODO debug output
+								} catch (IOException e1) {
+									JOptionPane.showMessageDialog(null, "Connection error!");
+								}
+							} catch (InterruptedException ex) {
+								Thread.currentThread().interrupt();
+							}
 						}
-					} catch (InterruptedException ex) {
-						Thread.currentThread().interrupt();
 					}
-				}
-				*/
+				});
+				subject1.start();
+				
 			}
 
 		});
@@ -113,12 +121,19 @@ class GUI {
 		JButton btn2 = new JButton("Disconnect");
 		btn2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
-					Login.disconnect();
-					JOptionPane.showMessageDialog(null, "Disconnected!");
-				} catch (IOException | InterruptedException e1) {
-					JOptionPane.showMessageDialog(null, "Disconnection error!");
-				}
+				
+				subject2 = new Thread(new Runnable() {
+					 public void run() {
+						 subject1.interrupt();
+						 try {
+							 JOptionPane.showMessageDialog(null, "Disconnected!"); //hack :)
+							 Login.disconnect();
+						 } catch (IOException | InterruptedException e1) {
+							 JOptionPane.showMessageDialog(null, "Disconnection error!");
+						 }
+					  }
+				});
+				subject2.start();
 			}
 		});
 		GroupLayout gl_panel = new GroupLayout(panel);
@@ -143,5 +158,8 @@ class GUI {
 						.addComponent(btn2, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE))
 				.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 		panel.setLayout(gl_panel);
+	
+		//subject1.start();
+		//subject2.start();
 	}
 }

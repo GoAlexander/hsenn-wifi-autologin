@@ -16,11 +16,18 @@ English:
 ====================
 
 TODO
--ping
+[x]ping
 [x]check webforms of other campuses
 [x]jar
 -Android build
 -distribute
--free license
+-free license
 -rename -> HSE login
 -some cleaning + fix long disconnect(?)
+
+
+Comments after 11.04.2016 ("release"):
+В целом реализован функционал, который планировался. Единственной замечание: баг с дисконнектом (слишком долго работает (не из-за нас)) и из-за плохой реализации потоков жрет много процессорного времени  и памяти.
+
+
+Кстати, всего в программе 3 потока: один - дефолтный, второй - для кнопки connect, третий - для кнопки disconnect.

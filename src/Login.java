@@ -1,7 +1,6 @@
 
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -17,14 +16,14 @@ public class Login {
 	public static void disconnect() throws MalformedURLException, IOException, InterruptedException, NoSuchElementException {
 		HtmlUnitDriver driver = new HtmlUnitDriver();
 		driver.setJavascriptEnabled(true);
-		driver.manage().timeouts().setScriptTimeout(2, TimeUnit.SECONDS); //TODO CHECK IT!
+		//driver.manage().timeouts().setScriptTimeout(5, TimeUnit.SECONDS); //TODO CHECK IT!
 		driver.get("http://1.1.1.1/logout.html");
 		
 		
 		try {
-			JavascriptExecutor executor = (JavascriptExecutor) driver;  
-			executor.executeAsyncScript("document.forms[0].submit();"); //TODO CHECK IT!
-			//executor.executeScript("document.forms[0].submit();"); // old version
+			JavascriptExecutor executor = (JavascriptExecutor) driver;
+			//executor.executeAsyncScript("document.forms[0].submit();"); //TODO CHECK IT!
+			executor.executeScript("document.forms[0].submit();"); // old version
 		} catch (UnhandledAlertException f) {
 			System.out.println("(Something wrong.)");
 			// exception because of driver.getTitle()
@@ -63,6 +62,7 @@ public class Login {
 			executor.executeScript("submitAction();", element_button);
 
 			System.out.println("Connection with HSE Wi-fi successful!");
+			//Process proc = Runtime.getRuntime().exec("espeak -ven -s130 \"Connectionsuccessful \""); //It is joke, delete it
 			if (DEBUG) {
 				System.out.println(driver.getCurrentUrl());
 				System.out.println("Page title is: " + driver.getTitle());
